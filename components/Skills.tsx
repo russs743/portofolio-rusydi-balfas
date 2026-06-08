@@ -161,8 +161,8 @@ export default function Skills() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-red-500/10 blur-[120px] rounded-full mix-blend-multiply animate-pulse duration-1000" />
-        <div className="absolute bottom-20 left-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-orange-500/10 blur-[120px] rounded-full mix-blend-multiply animate-pulse duration-1000" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-20 right-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-violet-600/10 blur-[120px] rounded-full mix-blend-multiply animate-pulse duration-1000" />
+        <div className="absolute bottom-20 left-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-fuchsia-600/10 blur-[120px] rounded-full mix-blend-multiply animate-pulse duration-1000" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-16 lg:gap-24 relative z-10">
@@ -171,7 +171,7 @@ export default function Skills() {
           <div>
             <h2 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter mb-6 relative inline-block">
               Tech.
-              <span className="absolute -bottom-1 left-0 w-1/3 h-2 bg-linear-to-r from-red-500 to-orange-500 rounded-full" />
+              <span className="absolute -bottom-1 left-0 w-1/3 h-2 bg-linear-to-r from-fuchsia-600 to-violet-600 rounded-full" />
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed max-w-md mt-4">
               My technical toolkit and areas of expertise. I turn ideas into
@@ -194,23 +194,23 @@ export default function Skills() {
             >
               <div className="skill-card-scaler w-full h-full transform-origin-top">
                 {/* Card Content - Handles 3D Tilt */}
-                <div className="skill-card-tilter w-full bg-white/70 backdrop-blur-2xl border border-white group hover:border-orange-500/30 rounded-4xl md:rounded-[3rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(249,115,22,0.1)] transition-all duration-300 overflow-hidden relative">
+                <div className="skill-card-tilter w-full bg-white/70 backdrop-blur-2xl border border-white group hover:border-fuchsia-500/30 rounded-4xl md:rounded-[3rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(192,38,211,0.1)] transition-all duration-300 overflow-hidden relative">
                   
                   {/* Magnetic Glow Effect inside card */}
                   <div 
                     className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
                     style={{
-                      background: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(249,115,22,0.06), transparent 40%)',
+                      background: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(192,38,211,0.06), transparent 40%)',
                       zIndex: -1,
                     }}
                   />
 
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-2">
-                      <div className={`${caveat.className} text-orange-500 text-2xl md:text-4xl font-bold`}>
+                      <div className={`${caveat.className} text-fuchsia-500 text-2xl md:text-4xl font-bold`}>
                         {category.label}
                       </div>
-                      <span className="text-gray-100 font-black text-6xl md:text-8xl select-none group-hover:text-orange-50 transition-colors duration-500 -rotate-6">
+                      <span className="text-gray-100 font-black text-6xl md:text-8xl select-none group-hover:text-fuchsia-50 transition-colors duration-500 -rotate-6">
                         {category.id}
                       </span>
                     </div>
@@ -229,9 +229,9 @@ export default function Skills() {
                           className="flex items-center text-gray-700 text-lg font-medium group/skill cursor-default"
                         >
                           <span 
-                            className="skill-dot w-3 h-3 rounded-full bg-linear-to-tr from-red-500 to-orange-500 mr-4 shadow-[0_0_10px_rgba(249,115,22,0.4)] group-hover/skill:scale-150 transition-transform duration-300"
+                            className="skill-dot w-3 h-3 rounded-full bg-linear-to-tr from-fuchsia-500 to-violet-500 mr-4 shadow-[0_0_10px_rgba(192,38,211,0.4)] group-hover/skill:scale-150 transition-transform duration-300"
                           ></span>
-                          <span className="group-hover/skill:text-orange-600 transition-colors duration-300 group-hover/skill:translate-x-1 inline-block">
+                          <span className="group-hover/skill:text-fuchsia-600 transition-colors duration-300 group-hover/skill:translate-x-1 inline-block">
                             {skill}
                           </span>
                         </li>
