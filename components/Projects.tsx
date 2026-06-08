@@ -84,7 +84,7 @@ export default function Projects() {
         </div>
         
         {/* List */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="relative z-10 w-full mx-auto px-6 md:px-12 lg:px-24">
           <p className="text-white/40 tracking-[0.3em] uppercase text-sm mb-8 md:mb-12">Selected Works</p>
           <div className="flex flex-col border-t border-white/10">
             {featuredProjects.map((project) => (

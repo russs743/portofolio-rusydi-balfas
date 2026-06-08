@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 md:w-1/2 h-px bg-linear-to-r from-transparent via-fuchsia-500 to-transparent opacity-30" />
       <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[40vw] h-[10vw] bg-fuchsia-600/20 blur-[80px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center relative z-10">
+      <div className="w-full mx-auto px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center relative z-10">
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-[-0.04em] mb-4 text-center">
           RUSYDI
         </h2>

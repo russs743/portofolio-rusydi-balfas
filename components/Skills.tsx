@@ -165,7 +165,7 @@ export default function Skills() {
         <div className="absolute bottom-20 left-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-fuchsia-600/10 blur-[120px] rounded-full mix-blend-multiply animate-pulse duration-1000" style={{ animationDelay: '1s' }} />
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-16 lg:gap-24 relative z-10">
+      <div className="w-full mx-auto flex flex-col md:flex-row items-start gap-16 lg:gap-24 relative z-10">
         {/* Left Side: Sticky Title */}
         <div className="md:w-1/3 md:sticky md:top-40">
           <div>
@@ -187,14 +187,14 @@ export default function Skills() {
               key={category.id}
               className="skill-card-wrapper w-full sticky"
               style={{ 
-                top: `calc(10rem + ${index * 2}rem)`, 
+                top: `calc(10rem + ${index * 3}rem)`, 
                 marginBottom: index === skillCategories.length - 1 ? '0' : '6rem', 
                 zIndex: index, 
               }}
             >
               <div className="skill-card-scaler w-full h-full transform-origin-top">
                 {/* Card Content - Handles 3D Tilt */}
-                <div className="skill-card-tilter w-full bg-white/70 backdrop-blur-2xl border border-white group hover:border-fuchsia-500/30 rounded-4xl md:rounded-[3rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(192,38,211,0.1)] transition-all duration-300 overflow-hidden relative">
+                <div className="skill-card-tilter w-full bg-white/95 backdrop-blur-2xl border border-white group hover:border-fuchsia-500/30 rounded-4xl md:rounded-[3rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(192,38,211,0.1)] transition-all duration-300 overflow-hidden relative">
                   
                   {/* Magnetic Glow Effect inside card */}
                   <div 

@@ -130,9 +130,6 @@ export default function Gallery() {
         >
           Gallery
         </motion.h2>
-        <p className="text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase">
-          Infinite Parallax
-        </p>
       </div>
 
       {/* Canvas */}
