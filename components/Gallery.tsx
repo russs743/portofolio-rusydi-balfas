@@ -23,8 +23,8 @@ const galleryPhotos = [
 ];
 
 // Configuration
-const DEPTH_LAYERS = 5;
-const IMAGES_PER_LAYER = 10;
+const DEPTH_LAYERS = 4;
+const IMAGES_PER_LAYER = 7; // Reduced from 50 to 28 total images
 const TOTAL_IMAGES = DEPTH_LAYERS * IMAGES_PER_LAYER;
 const MAX_WIDTH = 60; 
 const MAX_HEIGHT = 20;
@@ -51,7 +51,7 @@ function GalleryItems() {
       const speed = 1 - (layer / DEPTH_LAYERS) * 0.7; 
 
       return {
-        url: galleryPhotos[imageIndex],
+        url: galleryPhotos[imageIndex] + "&tr=w-600,q-75", // Fetch optimized lower-res images
         position: new THREE.Vector3(x, y, z),
         scale: [scale * 1.5, scale * 2], 
         speed,
@@ -108,8 +108,7 @@ function GalleryItems() {
           url={item.url}
           position={item.position}
           scale={item.scale as [number, number]}
-          transparent
-          opacity={0.9}
+          // Removed transparent and opacity to enable WebGL depth culling (huge performance boost)
         />
       ))}
     </group>
@@ -126,7 +125,7 @@ export default function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-white/80 text-[10vw] md:text-[8vw] font-black uppercase tracking-tighter select-none mb-4 mix-blend-overlay"
+          className="text-white/10 text-[10vw] md:text-[8vw] font-black uppercase tracking-tighter select-none mb-4" // Removed mix-blend-overlay (expensive on mobile)
         >
           Gallery
         </motion.h2>
@@ -135,8 +134,9 @@ export default function Gallery() {
       {/* Canvas */}
       <div className="w-full h-full absolute inset-0 z-0">
         <Canvas 
+          dpr={[1, 1.5]} // Limit pixel ratio on high-density mobile screens
           camera={{ position: [0, 0, 5], fov: 50 }}
-          gl={{ antialias: true, alpha: false }}
+          gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }} // Disable antialias for images
           onCreated={({ scene }) => {
             scene.background = new THREE.Color('#050505');
             scene.fog = new THREE.FogExp2('#050505', 0.04);
