@@ -21,7 +21,7 @@ export default function Projects() {
   const [mounted, setMounted] = useState(false);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
-  const featuredProjectIds = ["dashboard-kol", "maintenance-page", "museum-zoologi"];
+  const featuredProjectIds = ["legawa", "maintenance-page", "museum-zoologi"];
   const featuredProjects = projectsData.filter(p => featuredProjectIds.includes(p.id));
 
   useEffect(() => {

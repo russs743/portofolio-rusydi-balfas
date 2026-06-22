@@ -22,27 +22,33 @@ const galleryPhotos = [
   "https://ik.imagekit.io/bhiaoqt1n/Porto/IMG-20250616-WA0031.jpg?updatedAt=1780539922811",
 ];
 
-// Configuration
-const DEPTH_LAYERS = 4;
-const IMAGES_PER_LAYER = 7; // Reduced from 50 to 28 total images
-const TOTAL_IMAGES = DEPTH_LAYERS * IMAGES_PER_LAYER;
-const MAX_WIDTH = 60; 
-const MAX_HEIGHT = 20;
+// Base configuration
+const DEPTH_LAYERS = 5;
+const IMAGES_PER_LAYER_DESKTOP = 9; 
 
 function GalleryItems() {
   const group = useRef<THREE.Group>(null);
 
+  const { currentMaxWidth, currentMaxHeight, currentTotalImages } = useMemo(() => {
+    const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+    return {
+      currentMaxWidth: isMobile ? 30 : 60,
+      currentMaxHeight: isMobile ? 15 : 20,
+      currentTotalImages: isMobile ? 20 : DEPTH_LAYERS * IMAGES_PER_LAYER_DESKTOP,
+    };
+  }, []);
+
   // Generate random positions and assign images once
   const items = useMemo(() => {
-    return Array.from({ length: TOTAL_IMAGES }, (_, i) => {
+    return Array.from({ length: currentTotalImages }, (_, i) => {
       const layer = i % DEPTH_LAYERS;
       const imageIndex = Math.floor(Math.random() * galleryPhotos.length);
       
       // Layer 0 is closest (z=-2), Layer 4 is furthest (z=-20)
       const z = -2 - layer * 4.5; 
       
-      const x = (Math.random() - 0.5) * MAX_WIDTH;
-      const y = (Math.random() - 0.5) * MAX_HEIGHT;
+      const x = (Math.random() - 0.5) * currentMaxWidth;
+      const y = (Math.random() - 0.5) * currentMaxHeight;
       
       // Deeper layers are slightly larger to compensate for perspective
       const scale = 1 + (layer * 0.2) + Math.random() * 1.5;
@@ -51,7 +57,7 @@ function GalleryItems() {
       const speed = 1 - (layer / DEPTH_LAYERS) * 0.7; 
 
       return {
-        url: galleryPhotos[imageIndex] + "&tr=w-600,q-75", // Fetch optimized lower-res images
+        url: galleryPhotos[imageIndex] + "&tr=w-400,q-60", // Tekan ukuran gambar sekecil mungkin tapi tetap layak lihat
         position: new THREE.Vector3(x, y, z),
         scale: [scale * 1.5, scale * 2], 
         speed,
@@ -77,10 +83,10 @@ function GalleryItems() {
       const newX = item.originalX - targetX * item.speed;
       
       // Infinite wrap
-      const bounds = MAX_WIDTH / 2;
-      let wrappedX = newX % MAX_WIDTH;
-      if (wrappedX < -bounds) wrappedX += MAX_WIDTH;
-      if (wrappedX > bounds) wrappedX -= MAX_WIDTH;
+      const bounds = currentMaxWidth / 2;
+      let wrappedX = newX % currentMaxWidth;
+      if (wrappedX < -bounds) wrappedX += currentMaxWidth;
+      if (wrappedX > bounds) wrappedX -= currentMaxWidth;
 
       // Jika terjadi wrapping (lompat dari ujung kanan ke kiri), set posisi secara instan agar tidak terlihat terbang
       if (Math.abs(child.position.x - wrappedX) > bounds) {
@@ -125,7 +131,7 @@ export default function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-white/10 text-[10vw] md:text-[8vw] font-black uppercase tracking-tighter select-none mb-4" // Removed mix-blend-overlay (expensive on mobile)
+          className="text-white/60 text-[15vw] md:text-[8vw] font-black uppercase tracking-tighter select-none mb-4" // Removed mix-blend-overlay (expensive on mobile)
         >
           Gallery
         </motion.h2>
@@ -134,7 +140,7 @@ export default function Gallery() {
       {/* Canvas */}
       <div className="w-full h-full absolute inset-0 z-0">
         <Canvas 
-          dpr={[1, 1.5]} // Limit pixel ratio on high-density mobile screens
+          dpr={1} // Hard-cap resolusi layar di 1x (sangat ampuh hilangkan lag di HP layar 2K/3K)
           camera={{ position: [0, 0, 5], fov: 50 }}
           gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }} // Disable antialias for images
           onCreated={({ scene }) => {

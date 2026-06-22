@@ -11,6 +11,20 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    "id": "legawa",
+    "title": "website legawa",
+    "description": "Memperkenalkan batch saya, batch legawa, beserta member dan history dari batch ini.",
+    "image": "/projects/Legawa/image.png",
+    "tags": [
+      "neon",
+      "next",
+      "react",
+      "react-dom"
+    ],
+    "link": "https://batchlegawa.vercel.app/",
+    "folderName": "Legawa"
+  },
+  {
     "id": "appraisal-question",
     "title": "appraisal dashboard",
     "description": "membuat website untuk manajemen pertanyaan appraisal hr cretivox",
